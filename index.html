@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>雨林谜踪详细攻略</title>
+<style>
+:root{
+  --night:#08110f;--night2:#0d1815;--rail:#0b1512;--railLine:#21312b;
+  --paper:#e9e5da;--paper2:#f3f0e8;--ink:#24302b;--muted:#68756f;
+  --green:#1e4a3d;--green2:#4f7467;--moss:#8aa596;--rust:#9d603d;
+  --blue:#3b6572;--line:#c7c4b9;--soft:#dcd8cc;--white:#f5f7f4;
+  --mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;
+  --sans:Inter,"Noto Sans SC","Microsoft YaHei",Arial,sans-serif;
+  --serif:"Noto Serif SC","Source Han Serif SC",STSong,SimSun,serif;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--night);color:var(--ink);font-family:var(--sans);text-rendering:optimizeLegibility}
+button,input{font:inherit}a{color:inherit}::selection{background:#94ad9d;color:#10221b}
+.progress{position:fixed;inset:0 auto auto 0;height:3px;width:0;background:#91b1a1;z-index:100;box-shadow:0 0 14px #91b1a178}
+.shell{min-height:100vh;display:grid;grid-template-columns:260px minmax(0,1fr)}
+.rail{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#0d1815,#08110f);border-right:1px solid var(--railLine);color:#bccbc4;padding:26px 20px 18px;overflow:auto}
+.railBrand{padding-bottom:18px;border-bottom:1px solid var(--railLine)}
+.railBrand .eyebrow{font:9px/1.6 var(--mono);letter-spacing:.18em;color:#728b80}.railBrand b{display:block;margin-top:8px;color:#edf3ef;font:600 20px/1.35 var(--serif);letter-spacing:.04em}.railBrand span{display:block;margin-top:7px;color:#71847c;font:10px/1.6 var(--mono)}
+.rail nav{padding:17px 0 28px}.rail nav a{display:flex;gap:10px;align-items:flex-start;text-decoration:none;padding:7px 8px;margin:1px 0;border-left:2px solid transparent;color:#859991;font-size:11px;line-height:1.5;transition:.15s}.rail nav a i{font:9px/1.6 var(--mono);font-style:normal;color:#506a60;min-width:25px}.rail nav a:hover,.rail nav a.on{background:#13231e;color:#e4ece8;border-left-color:#709989}.rail nav a.on i{color:#9fc0b2}
+.railFoot{border-top:1px solid var(--railLine);padding-top:13px;font:9px/1.7 var(--mono);letter-spacing:.06em;color:#50675e}.railFoot strong{display:block;color:#88a196;font-weight:500}
+.main{min-width:0;background:
+  radial-gradient(circle at 80% 0%,rgba(99,131,116,.14),transparent 36rem),
+  linear-gradient(#0e1a17 0 440px,var(--paper) 440px 100%)}
+.hero{position:relative;min-height:440px;color:#e9f0ec;display:flex;align-items:flex-end;padding:72px clamp(26px,6vw,90px) 52px;overflow:hidden;border-bottom:1px solid #31453d}
+.hero:before{content:"";position:absolute;inset:0;opacity:.38;background:
+  radial-gradient(ellipse at 18% 28%,transparent 0 22%,rgba(123,160,143,.14) 22.5% 23%,transparent 23.5% 34%,rgba(123,160,143,.1) 34.5% 35%,transparent 35.5% 100%),
+  radial-gradient(ellipse at 75% 55%,transparent 0 19%,rgba(123,160,143,.12) 19.5% 20%,transparent 20.5% 31%,rgba(123,160,143,.08) 31.5% 32%,transparent 32.5% 100%)}
+.hero:after{content:"W-3 / FIELD GUIDE";position:absolute;right:5vw;top:38px;color:#71877e;font:9px/1 var(--mono);letter-spacing:.16em}
+.heroInner{position:relative;width:min(990px,100%)}.hero .kicker{font:10px/1.5 var(--mono);letter-spacing:.18em;color:#8fa99e}.hero h1{margin:12px 0 12px;font:500 clamp(36px,6vw,68px)/1.08 var(--serif);letter-spacing:.02em}.hero .deck{max-width:690px;margin:0;color:#bac9c2;font-size:14px;line-height:1.9}.heroMeta{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}.heroMeta span{border:1px solid #40574e;background:#0a1411aa;padding:7px 9px;color:#9eb0a8;font:9px/1 var(--mono);letter-spacing:.06em}
+.content{width:min(1080px,calc(100% - 44px));margin:0 auto;padding:48px 0 100px}.notice{display:grid;grid-template-columns:140px 1fr auto;gap:22px;align-items:center;background:#dfdbcf;border:1px solid #bbb8ad;border-left:4px solid var(--rust);padding:17px 19px;margin-bottom:28px;box-shadow:0 10px 28px #1e2a2410}.notice b{font:10px/1.5 var(--mono);letter-spacing:.1em;color:#7b5d4c}.notice p{margin:0;font-size:13px;line-height:1.75;color:#4e5752}.notice button{border:1px solid #68776f;background:#233f35;color:#eff3f0;padding:9px 12px;cursor:pointer;font-size:11px;white-space:nowrap}.notice button:hover{background:#18372d}
+.chain{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1px solid var(--line);background:var(--paper2);margin:28px 0 52px}.chain div{position:relative;padding:14px 12px 16px;border-right:1px solid var(--line)}.chain div:last-child{border-right:0}.chain small{display:block;font:8px/1.2 var(--mono);letter-spacing:.12em;color:#88938d}.chain b{display:block;margin-top:7px;font-size:11px;line-height:1.45}.chain div:after{content:"→";position:absolute;right:-7px;top:50%;transform:translateY(-50%);z-index:2;background:var(--paper2);color:#75827c;font:12px var(--mono)}.chain div:last-child:after{display:none}
+.section{scroll-margin-top:24px;display:grid;grid-template-columns:145px minmax(0,1fr);gap:38px;padding:44px 0;border-top:1px solid var(--line)}.stage{font:9px/1.6 var(--mono);letter-spacing:.12em;color:#7b8982}.stage b{display:block;margin-top:6px;color:#38594d;font-size:11px;font-weight:600}.stage .status{display:inline-block;margin-top:12px;border:1px solid #9cad9f;padding:4px 6px;color:#5a7468;background:#e2e5dc;font-size:8px}.chapter h2{margin:0 0 12px;font:500 28px/1.35 var(--serif);color:#1e3129}.chapter .lead{margin:0 0 22px;max-width:760px;font-size:14px;line-height:1.9;color:#4d5b54}.question{margin:18px 0 20px;padding:14px 16px;background:#e2e0d6;border-left:3px solid var(--green2);font:13px/1.8 var(--serif);color:#36463e}.question b{font-family:var(--sans);font-size:10px;letter-spacing:.08em;color:#6f7d76;display:block;margin-bottom:4px}
+.steps{counter-reset:step;margin:0;padding:0;list-style:none}.steps li{counter-increment:step;position:relative;padding:0 0 18px 40px;font-size:13px;line-height:1.85}.steps li:before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:2px;font:10px/1.4 var(--mono);color:#567468;border-bottom:1px solid #92a49b;padding-bottom:2px}.steps code,.fact code{font:11px/1.4 var(--mono);background:#d9d8ce;border:1px solid #c2c2b8;padding:2px 5px;color:#27453a;border-radius:2px}
+.fact{display:grid;grid-template-columns:180px 1fr;border-top:1px solid #c4c4ba;margin:18px 0 6px}.fact div{display:contents}.fact dt,.fact dd{margin:0;padding:10px 0;border-bottom:1px solid #d0cec5}.fact dt{font:10px/1.6 var(--mono);color:#738078}.fact dd{font-size:12px;line-height:1.65;color:#34423b}
+.details{margin-top:16px;border:1px solid #bfc1b8;background:#efede5}.details summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:12px;font-weight:700;color:#31463d}.details summary::-webkit-details-marker{display:none}.details summary:after{content:"展开";font:9px var(--mono);font-weight:400;color:#74817a}.details[open] summary:after{content:"收起"}.details .inside{border-top:1px solid #c9cac1;padding:14px 16px 16px;font-size:12px;line-height:1.8;color:#3b4942;background:#f6f3eb}.answer{margin:10px 0;padding:12px 13px;background:#12221d;color:#dbe7e1;border-left:3px solid #78a08f;font:11px/1.8 var(--mono);overflow-wrap:anywhere}.answer strong{color:#a9c7b8}.warning{border-left-color:#b17653;background:#eee5dc;color:#614d40}.micro{font-size:11px;color:#7a847f;line-height:1.7}.miniGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.mini{padding:12px 13px;border:1px solid #c8c7bd;background:#e5e3da}.mini b{display:block;font-size:11px;margin-bottom:5px}.mini span{font-size:11px;line-height:1.65;color:#68736d}
+.mazePath{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.mazePath span{padding:6px 9px;border:1px solid #9fa79f;background:#daddd5;font:11px/1 var(--mono);color:#26473b}
+.formAnswers{margin-top:15px;border:1px solid #b9beb7;background:#e4e4dc}.formRow{display:grid;grid-template-columns:140px 1fr auto;gap:12px;align-items:start;padding:12px 13px;border-bottom:1px solid #c4c6be}.formRow:last-child{border-bottom:0}.formRow label{font:9px/1.55 var(--mono);letter-spacing:.06em;color:#6a7770;padding-top:3px}.formRow pre{margin:0;white-space:pre-wrap;font:11px/1.75 var(--mono);color:#30433a}.copy{border:1px solid #7b8b83;background:#f0efe8;color:#42554c;padding:5px 7px;cursor:pointer;font:9px/1 var(--mono)}.copy.done{background:#294e40;color:#eef4f0}
+.diag{margin-top:52px;padding-top:38px;border-top:1px solid #bfc0b7}.diag h2{font:500 28px/1.3 var(--serif);margin:0 0 10px}.diagLead{margin:0 0 21px;color:#68736d;font-size:13px}.diagGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.diagCard{border:1px solid #c1c2b9;background:#efede6;padding:14px 15px}.diagCard b{font-size:12px;color:#2e443a}.diagCard p{margin:7px 0 0;font-size:11px;line-height:1.75;color:#65716b}.diagCard code{font:10px var(--mono);color:#2c5948}
+.optional{margin-top:42px;padding:26px 28px;background:#dcd9cf;border-top:1px solid #bbbcb2;border-bottom:1px solid #bbbcb2}.optional h3{font:500 21px/1.4 var(--serif);margin:0 0 9px}.optional p{font-size:12px;line-height:1.8;color:#5d6862}.optional ul{columns:2;column-gap:30px;padding-left:18px;margin:12px 0 0}.optional li{break-inside:avoid;margin:0 0 8px;font-size:11px;line-height:1.65;color:#526159}
+.end{margin-top:58px;padding:28px 0 0;border-top:1px solid #bfc0b7;display:grid;grid-template-columns:1fr auto;gap:25px}.end h2{font:500 26px/1.35 var(--serif);margin:0 0 8px}.end p{margin:0;max-width:700px;font-size:12px;line-height:1.85;color:#68746d}.stamp{align-self:start;border:2px solid #597166;color:#597166;padding:9px 12px;transform:rotate(-2deg);font:10px/1.45 var(--mono);letter-spacing:.08em;text-align:center}
+.toTop{position:fixed;right:18px;bottom:18px;width:38px;height:38px;border:1px solid #52675e;background:#0c1713e8;color:#b9cbc2;display:grid;place-items:center;text-decoration:none;font:14px var(--mono);opacity:0;pointer-events:none;transition:.2s;z-index:50}.toTop.show{opacity:1;pointer-events:auto}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.rail{display:none}.main{background:linear-gradient(#0e1a17 0 390px,var(--paper) 390px 100%)}.hero{min-height:390px;padding:56px 24px 38px}.content{width:min(100% - 28px,760px);padding-top:30px}.notice{grid-template-columns:1fr;gap:9px}.notice button{width:max-content}.chain{grid-template-columns:repeat(3,1fr)}.chain div:nth-child(3){border-right:0}.chain div:nth-child(3):after{display:none}.chain div:nth-child(-n+3){border-bottom:1px solid var(--line)}.section{grid-template-columns:1fr;gap:13px;padding:34px 0}.stage{display:flex;align-items:center;gap:10px}.stage b{margin:0}.stage .status{margin:0;margin-left:auto}.formRow{grid-template-columns:1fr auto}.formRow label{grid-column:1/-1}.diagGrid{grid-template-columns:1fr}.optional ul{columns:1}.end{grid-template-columns:1fr}.stamp{justify-self:start}}
+@media(max-width:560px){.hero h1{font-size:37px}.hero .deck{font-size:12px}.heroMeta{gap:6px}.chain{grid-template-columns:1fr}.chain div{border-right:0!important;border-bottom:1px solid var(--line)}.chain div:after{display:none}.miniGrid{grid-template-columns:1fr}.fact{grid-template-columns:1fr}.fact div{display:block;border-bottom:1px solid #d0cec5;padding:8px 0}.fact dt,.fact dd{border:0;padding:2px 0}.formRow{grid-template-columns:1fr}.copy{justify-self:start}.optional{padding:20px 18px}.toTop{right:10px;bottom:10px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{.rail,.progress,.toTop,.notice button,.copy{display:none!important}.shell{display:block}.main{background:#fff}.hero{min-height:0;background:#0e1a17;padding:35px;color:#fff}.content{width:100%;padding:24px}.details{break-inside:avoid}.details .inside{display:block}.section{break-inside:avoid}.stamp{transform:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="shell">
+<aside class="rail">
+  <div class="railBrand"><div class="eyebrow">AZERA / PLAYER WALKTHROUGH</div><b>雨林谜踪详细攻略</b><span>完整主线 · 最终提交答案 · 玩家视角</span></div>
+  <nav id="nav">
+    <a href="#start"><i>00</i>从 FieldTalk 开始</a>
+    <a href="#acrp"><i>01</i>项目站与公开数据</a>
+    <a href="#geo"><i>02</i>GeoExplorer 末端复核</a>
+    <a href="#cloud"><i>03</i>Cloudline 与旧相机</a>
+    <a href="#search"><i>04</i>Atlas 检索 2011</a>
+    <a href="#archive"><i>05</i>1978 馆藏与字形</a>
+    <a href="#medical"><i>06</i>医疗工作簿</a>
+    <a href="#line"><i>07</i>《林线之外》石门</a>
+    <a href="#cache"><i>08</i>ARZ-04 恢复缓存</a>
+    <a href="#survey"><i>09</i>Survey 影像配准</a>
+    <a href="#sar"><i>10</i>SAR 最终提交</a>
+    <a href="#ending"><i>11</i>回执与结局</a>
+  </nav>
+  <div class="railFoot"><strong>READ ONLY / SPOILER FILE</strong>建议卡在哪里就看到哪里。攻略不会替游戏解释最终异常，只告诉你怎样把调查走通。</div>
+</aside>
+
+<main class="main">
+<section class="hero">
+  <div class="heroInner">
+    <div class="kicker">PLAYER RECORD / W-3 ROUTE REVIEW</div>
+    <h1>雨林谜踪详细攻略</h1>
+    <p class="deck">从机场里那段没聊完的私信，一直到 W-3 地面路线复核。这里记录的是一条能完整通关的调查路径；如果你只是在某一步卡住，建议只展开对应阶段的答案。</p>
+    <div class="heroMeta"><span>完整剧透</span><span>主线可通关路径</span><span>含谜题精确答案</span><span>适配当前最终版本</span></div>
+  </div>
+</section>
+
+<div class="content">
+  <div class="notice">
+    <b>SPOILER CONTROL</b>
+    <p>默认把关键答案折起来。先看“你现在应该在想什么”和操作步骤；仍然卡住，再展开答案。开局出现的 1 元自愿支持窗口与游戏进度无关，关闭或支持都不会改变任何线索和结局。</p>
+    <button id="toggleAll">展开全部答案</button>
+  </div>
+
+  <div class="chain" aria-label="主线流程">
+    <div><small>START</small><b>FieldTalk / 私信</b></div><div><small>TRACE</small><b>ACRP / GIS</b></div><div><small>OBJECT</small><b>照片 / W220</b></div><div><small>ARCHIVE</small><b>2011 / 1978</b></div><div><small>RECOVERY</small><b>旧站 / Survey</b></div><div><small>SUBMIT</small><b>SAR / W-3</b></div>
+  </div>
+
+  <section class="section" id="start">
+    <div class="stage">STAGE <b>00 / FIELDTALK</b><span class="status">入口</span></div>
+    <div class="chapter">
+      <h2>先确认：周野出发前到底给你留了什么</h2>
+      <p class="lead">游戏开场没有“任务按钮”。你是周野的朋友，罗岚找你不是让你破案，而是请你把<strong>能确认时间和来源的东西</strong>找出来。第一条真正能往外走的线索，就在你和周野的历史私信里。</p>
+      <div class="question"><b>你现在应该在想什么</b>周野出发前拿到的是哪一版项目资料？他有没有给你一个可以继续查的公开入口？</div>
+      <ol class="steps">
+        <li>在「罗岚 · 后方协调」里读完 9 月 24 日的消息。</li>
+        <li>点开<strong>「你与周野 · 9月17日私信」</strong>。</li>
+        <li>读到 19:26，周野会留下<strong>「阿泽拉雨林联合研究项目 · 2026野外季」</strong>的链接。打开它。</li>
+      </ol>
+      <details class="details"><summary>这一段有没有隐藏答案？</summary><div class="inside">没有。这里的作用是建立你的身份和调查方法：游戏会主动给你一扇门，但进入下一页以后，你要自己判断什么值得继续追。周野的 WildTrace 公开档案可以从 ACRP 人员页进入，属于补充人物信息，不是主线必需。</div></details>
+    </div>
+  </section>
+
+  <section class="section" id="acrp">
+    <div class="stage">STAGE <b>01 / ACRP</b><span class="status">公开数据</span></div>
+    <div class="chapter">
+      <h2>先别猜发生了什么，去看最后一段“可核对的数据”</h2>
+      <p class="lead">ACRP 首页信息很多，但罗岚真正要的是可追溯的时间、路线和原文件。主线不要求你把整个项目站读完。</p>
+      <div class="question"><b>你现在应该在想什么</b>最后同步的位置为什么需要复核？计划路线和实际轨迹之间，到底差了多少？</div>
+      <ol class="steps">
+        <li>进入顶部的<strong>「公开数据」</strong>。</li>
+        <li>找到 09/24 路线组留下的条目：<strong>UL-09 trajectory review · 09/22</strong>。</li>
+        <li>打开 GeoExplorer。雨量 CSV 和路线 GeoJSON 都可以先留着，后面会再次用到。</li>
+      </ol>
+      <div class="miniGrid"><div class="mini"><b>可选阅读</b><span>团队、野外日志、研究方向和 PDF 能补世界观，但不会卡主线。</span></div><div class="mini"><b>建议记下</b><span>设备名、数据集 ID、时间戳、文件名，比“我觉得哪里不对”更有用。</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="geo">
+    <div class="stage">STAGE <b>02 / GEOEXPLORER</b><span class="status">第一次硬门槛</span></div>
+    <div class="chapter">
+      <h2>把最后一个 GPS 点，和计划线、降雨放到同一张图上</h2>
+      <p class="lead">这里不是让你找“隐藏按钮”。右侧三条检查项就是你要完成的事情。缺哪一条，就补哪一条。</p>
+      <ol class="steps">
+        <li>确认<strong>计划路线</strong>和<strong>GPS轨迹</strong>都显示。</li>
+        <li>打开<strong>「累计降雨 09/18–09/22」</strong>图层。</li>
+        <li>把轨迹时间拖到最后，或直接点最后一个红色节点：<strong>09/22 17:43</strong>。</li>
+        <li>三项检查都变为完成后，点击<strong>「记录末端对照结果」</strong>。</li>
+        <li>出现结果后，再点<strong>「打开同一时间段的现场影像批次」</strong>。</li>
+      </ol>
+      <dl class="fact"><div><dt>最后可信点</dt><dd><code>2.41310N, 114.22960E</code></dd></div><div><dt>设备</dt><dd><code>GPSMAP 67i</code></dd></div><div><dt>相对计划线节点 07</dt><dd>约 <code>310 m</code>，方向为<strong>西偏</strong></dd></div><div><dt>时间</dt><dd><code>09/22 17:43</code></dd></div></dl>
+      <details class="details"><summary>三项检查一直不绿怎么办？</summary><div class="inside"><div class="answer"><strong>必须同时满足：</strong>最后轨迹点 = 第 9 个点（09/22 17:43）／累计降雨图层开启／计划路线与 GPS 实际轨迹同时开启。</div>测距不是必需操作，无人机覆盖层也不是这一阶段的通过条件。</div></details>
+    </div>
+  </section>
+
+  <section class="section" id="cloud">
+    <div class="stage">STAGE <b>03 / CLOUDLINE</b><span class="status">物件锚点</span></div>
+    <div class="chapter">
+      <h2>九张代理图里，找那件“时间上不太对”的东西</h2>
+      <p class="lead">这里没有搜索题。你只要像在翻现场照片一样逐张看。真正要找的不是风景，而是一件能被<strong>型号化、继续检索</strong>的物件。</p>
+      <ol class="steps">
+        <li>打开 Cloudline 中的照片查看器。</li>
+        <li>重点查看 <strong>IMG_2316.JPG · 09/22 13:54</strong>，备注是“树根这边光线太差……”那张。</li>
+        <li>这张图会出现 CameraDB 的机型资料入口。打开它。</li>
+        <li>CameraDB 会把物件识别到 <strong>Sony Cyber-shot DSC-W220</strong>，2009 年发布。</li>
+        <li>点击<strong>「在 Atlas 中继续查这个型号」</strong>。</li>
+      </ol>
+      <details class="details"><summary>我在 Cloudline 点了很多图都没有下一步</summary><div class="inside"><div class="answer">要打开的是 <strong>IMG_2316.JPG</strong>，对应树根旁旧装备的照片。只有这张会登记旧相机锚点并显示 CameraDB 链接。</div></div></details>
+    </div>
+  </section>
+
+  <section class="section" id="search">
+    <div class="stage">STAGE <b>04 / ATLAS</b><span class="status">主动检索</span></div>
+    <div class="chapter">
+      <h2>游戏把“型号”给了你，第二个词要自己带过去</h2>
+      <p class="lead">Atlas 打开时已经带着 <code>DSC-W220</code>。只搜型号，你看到的大多会是说明书、论坛和旧物信息——这正是设计预期。现在要问的是：<strong>这台相机是在哪里被发现的？</strong></p>
+      <div class="question"><b>锚点规则</b>型号 + 地点，比人名更容易跨年份对上。你在前面的项目资料里已经反复见过那个地名。</div>
+      <ol class="steps">
+        <li>在现有 <code>DSC-W220</code> 后加入<strong>「乌伦」</strong>，英文 <code>Ulen</code> 也可以。</li>
+        <li>结果中会出现 2011 年的地方报道，以及官方公开案件。</li>
+        <li>优先打开<strong>「UL-2011-44：乌伦上游三人失联案件公开摘要」</strong>。</li>
+      </ol>
+      <details class="details"><summary>直接给我搜索词</summary><div class="inside"><div class="answer">DSC-W220 乌伦</div><p class="micro">如果再加 <code>2011</code>，官方案件会更靠前，但不是必须。</p></div></details>
+    </div>
+  </section>
+
+  <section class="section" id="archive">
+    <div class="stage">STAGE <b>05 / 2011 → 1978</b><span class="status">历史链</span></div>
+    <div class="chapter">
+      <h2>2011 案件真正重要的，不是传闻，是一个旧地名</h2>
+      <p class="lead">公开案件已经把很多猎奇说法排除掉了。你要抓住的是能继续追溯的正式记录：最后定位、天气、路线偏移，以及一处早已不用的地名。</p>
+      <ol class="steps">
+        <li>在 UL-2011-44 摘要中留意：连续强降雨、轨迹偏离计划路线、进入<strong>旧河道区域</strong>。</li>
+        <li>继续往下看地名说明：1970 年代采集目录里，同一上游河湾出现过 <strong>“Amoka bend”</strong>。</li>
+        <li>点击<strong>「1978 ‘Amoka bend’ 田野采集记录」</strong>。</li>
+        <li>读 ARZ-78-17 馆藏。重点不是给 Sena 的画“下结论”，而是注意 2026 的高桥健引用过这份馆藏。</li>
+        <li>打开<strong>「纸页17B · 字形出现位置对照」</strong>。</li>
+      </ol>
+      <div class="question"><b>别急着翻译字形</b>17B 记录的是“它们出现在哪里”和“缺口朝向”，不是一本词典。后面真正要用的是出现环境。</div>
+      <details class="details"><summary>17B 要记哪些东西？</summary><div class="inside"><div class="answer"><strong>A2</strong>：说话、歌唱旁<br><strong>A4</strong>：身体图、分配记录<br><strong>B4</strong>：口部、饮食与发声旁</div>页面底部会提示：2026 现场工作簿在同一页引用了 <strong>A2 / A4 / B4</strong>。点这个引用，回到 FieldTalk 的医疗频道。</div></details>
+    </div>
+  </section>
+
+  <section class="section" id="medical">
+    <div class="stage">STAGE <b>06 / MEDICAL</b><span class="status">附件回流</span></div>
+    <div class="chapter">
+      <h2>回到医疗频道，新的附件现在才会出现</h2>
+      <p class="lead">如果你之前已经逛过医疗频道，却没看到工作簿，不是漏看：那份附件只有在你读完 1978 字形对照后才进入同步镜像。</p>
+      <ol class="steps">
+        <li>回到 FieldTalk 的<strong>「# 医疗与安全」</strong>。</li>
+        <li>你会看到 ARZ-04 在 09/24 08:41 补齐的附件：<strong>UL09_medical_log_v12.xlsx</strong>。</li>
+        <li>打开只读副本，查看每日记录中的<strong>批注 / F5</strong>。</li>
+        <li>高桥撤回了自己之前对 A2/A4/B4 的直接译法，并提到一个 2011 年的个人网页：<strong>《林线之外》</strong>。</li>
+        <li>打开离线镜像。</li>
+      </ol>
+      <details class="details"><summary>这里需要从药品、症状里算答案吗？</summary><div class="inside">主线不需要。症状、药品、检测结果主要帮助你判断团队状态和排除过度解释。真正通往下一阶段的是 F5 批注中的旧网页地址。</div></details>
+    </div>
+  </section>
+
+  <section class="section" id="line">
+    <div class="stage">STAGE <b>07 / THE LINE BEYOND</b><span class="status">核心谜题</span></div>
+    <div class="chapter">
+      <h2>先读 Fragments，再进 Game。石门不是靠试出来的</h2>
+      <p class="lead">旧站已经把门锁所需的四种“出现环境”写在 Fragments 里。顺序也藏在文字本身：雨后水痕 → 旧路入口 → 折返 → 屋内侧。</p>
+      <ol class="steps">
+        <li>先打开<strong>Fragments</strong>，把四组抄形的出现环境读完；这一步本身也会登记为已读。</li>
+        <li>再进入<strong>Game</strong>。方向键或屏幕方向键都可以移动。</li>
+        <li>从起点到石门，最短路线可以直接按下面这组：</li>
+      </ol>
+      <div class="mazePath"><span>↓ × 4</span><span>→ × 3</span><span>↓ × 4</span><span>→ × 14</span><span>↑ × 1</span></div>
+      <details class="details" open><summary>石门三层完整答案</summary><div class="inside">
+        <p><strong>第一层｜四块按板</strong></p>
+        <div class="answer">顺序：<strong>雨后水痕 → 旧路入口 → 折返 → 屋内侧</strong><br>如果按图形文件对应：glyph_6 → glyph_5 → glyph_7 → glyph_3</div>
+        <p>随后要求把环境词抄成四段，直接输入：</p>
+        <div class="answer">雨 / 路 / 折返 / 屋</div>
+        <p><strong>第二层｜三联形</strong></p>
+        <div class="answer">选择：<strong>1978儿童墙 + 2026医疗批注</strong></div>
+        <p><strong>第三层｜方向缺口</strong></p>
+        <div class="answer">选择：<strong>把缺口拨向门内</strong></div>
+        <p>完成后会出现 OLD CHANNEL 隐藏页，并给出 <strong>ARZ-04 缓存对象</strong>入口。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="section" id="cache">
+    <div class="stage">STAGE <b>08 / ARZ-04 CACHE</b><span class="status">恢复日志</span></div>
+    <div class="chapter">
+      <h2>这里不用“解”，把周野最后留下的记录读完</h2>
+      <p class="lead">恢复文本里有很多值得回头对照的内容，但主线出口写得很明确：陈栩最后那架无人机飞过旧河槽，代理图还在 Survey 队列。</p>
+      <ol class="steps">
+        <li>完整阅读 <strong>/outbox/2026-09-22/notes/zhou_final.txt</strong>。</li>
+        <li>注意周野自己也提醒你：不要只信他的方向判断，要把河床、木台和西边坡<strong>重新和地图对一次</strong>。</li>
+        <li>点击<strong>「打开影像复核对象」</strong>进入 Survey Review。</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="survey">
+    <div class="stage">STAGE <b>09 / SURVEY REVIEW</b><span class="status">第二次硬门槛</span></div>
+    <div class="chapter">
+      <h2>三帧里只有一帧能同时满足影像、雨量和轨迹</h2>
+      <p class="lead">这一页不是凭感觉选“最像”的图。你要把三个来源交叉起来：代理帧坐标、09/22 17:30 的累计雨量、GeoExplorer 的末端偏移方向。</p>
+      <ol class="steps">
+        <li>选择第二帧：<strong>17:42:31 · old channel</strong>。</li>
+        <li>在雨量表查到 09/22 17:30 的累计雨量，填入 <strong>278.10</strong>。</li>
+        <li>最后 GPS 点相对计划线节点 07 的方向选择<strong>西偏</strong>。</li>
+        <li>点击<strong>「运行坐标配准」</strong>。</li>
+        <li>通过后会显示残差 <strong>11.4 m</strong>，并出现前往搜救协调系统的入口。</li>
+      </ol>
+      <dl class="fact"><div><dt>正确对象</dt><dd><code>DJI_0509_PROXY.JPG</code></dd></div><div><dt>时间</dt><dd><code>17:42:31</code></dd></div><div><dt>坐标</dt><dd><code>2.4131N, 114.2296E</code></dd></div><div><dt>配准残差</dt><dd><code>11.4 m</code></dd></div><div><dt>累计雨量</dt><dd><code>278.10 mm</code></dd></div><div><dt>轨迹关系</dt><dd><strong>西偏</strong></dd></div></dl>
+      <details class="details"><summary>为什么第一帧、第三帧都不行？</summary><div class="inside">三帧程序计算出的配准残差分别是 <code>38.7 m</code>、<code>11.4 m</code>、<code>54.2 m</code>。接受阈值是 15 m，因此只有第二帧满足配准要求；同时还必须正确填出雨量和“西偏”，否则交叉核对仍不会完成。</div></details>
+    </div>
+  </section>
+
+  <section class="section" id="sar">
+    <div class="stage">STAGE <b>10 / SAR</b><span class="status">最终提交</span></div>
+    <div class="chapter">
+      <h2>最后不是猜谜，是把你已经核过的证据写成一份能追溯的提交</h2>
+      <p class="lead">三个证据来源保持勾选。下面四个字段都不是新线索，只是在检查你是否能把前面的时间、坐标、环境和文件名重新写准确。</p>
+      <div class="formAnswers">
+        <div class="formRow"><label>时间依据</label><pre id="a-time">09/22 17:42:31（同段 GPS 末端记录为 17:43）</pre><button class="copy" data-copy="a-time">复制</button></div>
+        <div class="formRow"><label>位置依据</label><pre id="a-loc">代理帧坐标 2.4131N, 114.2296E，配准残差 11.4 m；位置位于实际轨迹末段，较计划线节点 07 西侧偏离。</pre><button class="copy" data-copy="a-loc">复制</button></div>
+        <div class="formRow"><label>环境风险</label><pre id="a-risk">持续降雨导致河位上涨，旧河床进入路线的风险增加。</pre><button class="copy" data-copy="a-risk">复制</button></div>
+        <div class="formRow"><label>附件与对象</label><pre id="a-att">GPSMAP 67i
+UL09_rain_gauge_0918-0922
+DJI_0509_PROXY.JPG</pre><button class="copy" data-copy="a-att">复制</button></div>
+      </div>
+      <details class="details"><summary>环境风险为什么最容易卡？</summary><div class="inside"><p>这一格要求同时写出<strong>现场条件</strong>和它对<strong>进入/撤离路线</strong>的影响。只写“暴雨”太少，只写“很危险”也太少。</p><div class="answer"><strong>稳妥写法：</strong>持续降雨导致河位上涨，旧河床进入路线的风险增加。</div><p class="micro">系统会接受“雨 / 河位 / 河床 / 坡 / 降水”一类现场词，同时还要出现“路线 / 进入 / 撤离 / 风险”一类影响词。</p></div></details>
+      <details class="details"><summary>提交按钮仍然报错，逐项核对</summary><div class="inside">
+        <ul>
+          <li>GPS、雨量/河位、DJI 代理帧三个证据来源都保持勾选。</li>
+          <li>时间里出现 <code>17:42:31</code>、<code>17:43</code> 或完整日期中的至少一种。</li>
+          <li>位置里必须同时出现 <code>2.4131</code>、<code>114.2296</code>、<code>11.4</code>，还要写到计划线/实际轨迹/西侧偏离/旧河槽中的一种关系。</li>
+          <li>附件必须包含 GPS 设备（<code>GPSMAP 67i</code> 或 UL-09 track）、雨量数据集 ID 和 <code>DJI_0509_PROXY.JPG</code>。</li>
+        </ul>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="section" id="ending">
+    <div class="stage">STAGE <b>11 / W-3</b><span class="status">结局</span></div>
+    <div class="chapter">
+      <h2>提交通过以后，不再有新的谜题</h2>
+      <p class="lead">材料被接受后，你会进入 W-3 地面路线复核回执。这里是剧情收束，不需要再找“通关密码”。把时间线和右侧审计状态读完即可。</p>
+      <ol class="steps">
+        <li>阅读 W-3 回执中关于复核区域、来源链、雨量与轨迹偏移的确认。</li>
+        <li>别漏掉右侧 <strong>CACHE OBJECT / NOT IN CASE BUNDLE</strong> 那个不属于案件包的对象。</li>
+        <li>页面底部点击<strong>「关闭案卷 · 结束本次调查」</strong>。</li>
+        <li>进入感谢页后，主线正式结束。</li>
+      </ol>
+      <div class="question"><b>攻略到这里也停</b>回执之外的异常没有唯一的“官方解释题”。游戏把可确认的证据和无法彻底解释的部分故意留在了不同层级，不需要为了通关替它们补一个结论。</div>
+    </div>
+  </section>
+
+  <section class="diag" id="diagnostic">
+    <h2>卡关速查</h2><p class="diagLead">如果你不想从头看攻略，按当前页面找对应的一格。</p>
+    <div class="diagGrid">
+      <div class="diagCard"><b>GeoExplorer 没有现场影像入口</b><p>最后点调到 <code>09/22 17:43</code>，开累计降雨，计划线和 GPS 轨迹都保持显示，然后记录末端对照。</p></div>
+      <div class="diagCard"><b>Cloudline 看不到 CameraDB</b><p>打开 <code>IMG_2316.JPG</code>，就是 09/22 13:54、树根旁旧装备那张。</p></div>
+      <div class="diagCard"><b>Atlas 一直只有相机说明书</b><p>不要只搜 <code>DSC-W220</code>。把项目地点也带过去：<code>DSC-W220 乌伦</code>。</p></div>
+      <div class="diagCard"><b>医疗频道没有新附件</b><p>先读完 ARZ-78-17 的字形对照页，并点 2026 引用记录返回医疗频道。</p></div>
+      <div class="diagCard"><b>旧站石门按了没反应</b><p>先把 Fragments 打开并读完。第一层顺序：雨 → 路 → 折返 → 屋。</p></div>
+      <div class="diagCard"><b>Survey 总是 outside threshold</b><p>选第二帧 <code>17:42:31</code>，雨量 <code>278.10</code>，方向<strong>西偏</strong>。</p></div>
+      <div class="diagCard"><b>SAR 卡“环境风险”</b><p>同时写环境变化和路线影响，例如：持续降雨导致河位上涨，旧河床进入路线的风险增加。</p></div>
+      <div class="diagCard"><b>打开某页却显示“对象不可用”</b><p>这不是坏链接，而是前置调查状态没建立。按页面给的“返回上一来源”回去，从对应入口重新进入。</p></div>
+    </div>
+  </section>
+
+  <section class="optional">
+    <h3>哪些内容不是通关必需，但值得看？</h3>
+    <p>如果你想完整体验而不是只冲主线，这些页面能补人物关系和“为什么大家会这样判断”，但它们不会改变最终答案。</p>
+    <ul>
+      <li>周野的 WildTrace：路线、装备、社区讨论，能看出他平时怎样判断 GPS、雨季和旧林道。</li>
+      <li>ACRP 团队与野外日志：补齐六名成员职责、项目工作方式与公开数据边界。</li>
+      <li>Atlas 的地方新闻、家属博客、水文站、地名志：帮助区分正式记录、传闻和二手叙述。</li>
+      <li>医疗工作簿的症状、药品、检测页：主要用于理解现场状态，不需要计算“真正病因”。</li>
+      <li>《林线之外》的留言簿和其他碎片：提供 2011 年旧站作者当时的犹疑和误读。</li>
+      <li>四份 PDF：设备清单、许可、社区接触协议、2017 样区调查，都是世界观和来源链补充。</li>
+    </ul>
+  </section>
+
+  <div class="end"><div><h2>这份攻略只负责把路走通。</h2><p>《雨林谜踪》真正有意思的地方仍然是你第一次遇到那些页面时，自己决定什么值得相信、什么值得带去下一个地方继续查。已经知道答案以后，建议至少把 2011、1978 和周野最后的缓存文本重新连着读一遍——很多细节只有在知道“它后来会被用到哪里”之后才会变得清楚。</p></div><div class="stamp">SOURCE CHAIN<br>WALKTHROUGH / VERIFIED</div></div>
+</div>
+</main>
+</div>
+<a class="toTop" id="toTop" href="#" aria-label="回到顶部">↑</a>
+<script>
+const details=[...document.querySelectorAll('details.details')],toggle=document.getElementById('toggleAll');let allOpen=false;
+toggle.addEventListener('click',()=>{allOpen=!allOpen;details.forEach(d=>d.open=allOpen);toggle.textContent=allOpen?'收起全部答案':'展开全部答案'});
+const sections=[...document.querySelectorAll('.section')],links=[...document.querySelectorAll('#nav a')];
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-20% 0px -68% 0px',threshold:0});sections.forEach(s=>io.observe(s));
+const progress=document.getElementById('progress'),topBtn=document.getElementById('toTop');function onScroll(){const h=document.documentElement.scrollHeight-innerHeight,p=h>0?scrollY/h*100:0;progress.style.width=Math.max(0,Math.min(100,p))+'%';topBtn.classList.toggle('show',scrollY>520)}addEventListener('scroll',onScroll,{passive:true});onScroll();
+document.querySelectorAll('.copy').forEach(btn=>btn.addEventListener('click',async()=>{const text=document.getElementById(btn.dataset.copy).innerText;try{await navigator.clipboard.writeText(text);btn.textContent='已复制';btn.classList.add('done');setTimeout(()=>{btn.textContent='复制';btn.classList.remove('done')},1300)}catch(e){const r=document.createRange();r.selectNodeContents(document.getElementById(btn.dataset.copy));const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='已选中'}}));
+</script>
+</body>
+</html>
